@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment } from 'react';
+import Counter from './components/Counter';
+import Header from './components/Header';
+
+// function App() {
+//   return (
+//     <Counter />
+//   );
+// }
+
+// export default App;
+
+//--------------------------------------------------------------------------------------------------------------stage (WORKING WIHT MULTIPLE SLICES)
+import Auth from './components/Auth';
+import { useSelector } from 'react-redux';
+import UserProfile from './components/UserProfile';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const isAuth = useSelector((state) => state.auth.isAuthenticated);
+	// state obj > two reducer> we need auth > isAuthenticated property from the store.
+	return (
+		<Fragment>
+			<Header />
+			{!isAuth && <Auth />}
+			{isAuth && <UserProfile />}
+			<Counter />;
+		</Fragment>
+	);
 }
 
 export default App;

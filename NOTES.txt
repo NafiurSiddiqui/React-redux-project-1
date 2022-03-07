@@ -1,0 +1,25 @@
+why redux over context?
+
+-- for bigger app wide state, REDUX is a better choice for managing state app wide.Better for high frequency changes state.
+-- for smaller app or local state wise, better to use CONTEXT. like low frequency updates, userAuth, theme etc. Even though we used here for auth, just for the demonstration purposes.
+
+
+
+payloads= extra data provided to an argument like dipatch.
+
+
+Make sure of the correct spelling of the dispatch identifier, typos will not work if the state dispatch and funcion dispatch ( where it is used does not work).
+
+//MOST POSSIBLE PIT FALL WITH REDUX.
+
+--- Clashing identifier 
+----lot of data in the store will lead to bigger and bigger state object. In order to not to copy paste the object wherever the state changes, we..
+---- Always beware of the immutibility of the state snapshot. The potential danger of accidentally mutating the original state instead of overwriting the.
+
+👆 Solution would be the old way - manually taking care this issue by steps
+
+or using REDUX toolkit
+
+
+
+ADVICE: it is better to split redux slice into its own component like we did in the store folder.
