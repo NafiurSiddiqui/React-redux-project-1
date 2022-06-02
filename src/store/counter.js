@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+//--------------------------------------------------------------------------------------------------------------stage1
+
 // const initialCounterState = { counter: 0, showCounter: true };
 
 // const counterSlice = createSlice({

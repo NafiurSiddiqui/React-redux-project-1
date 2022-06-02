@@ -1,36 +1,36 @@
-// import { createStore } from 'redux';
+import { createStore } from 'redux';
+
+//--------------------------------------------------------------------------------------------------------------stage 1
+
 //only store and reducer here
 
-// const counterReducer = (state = { counter: 0 }, action) => {
-// 	if (action.type === 'increment') {
-// 		return {
-// 			counter: state.counter + 1,
-// 		};
-// 	}
-// 	//2
-// 	if (action.type === 'increase') {
-// 		return {
-// 			counter: state.counter + action.amount,
-// 		};
-// 	}
-// 	if (action.type === 'decrement') {
-// 		return {
-// 			counter: state.counter - 1,
-// 		};
-// 	}
+const counterReducer = (state = { counter: 0 }, action) => {
+	if (action.type === 'increment') {
+		return {
+			counter: state.counter + 1,
+		};
+	}
+	//2
+	if (action.type === 'increase') {
+		return {
+			counter: state.counter + action.amount,
+		};
+	}
+	if (action.type === 'decrement') {
+		return {
+			counter: state.counter - 1,
+		};
+	}
 
-// 	return state;
-// };
+	return state;
+};
 
-// const store = createStore(counterReducer);
+const store = createStore(counterReducer);
 
-// export default store;
-
-//we export it so that we can use it anywhere outside this file.
+export default store;
 
 /**
- * we need to provide this store to the highest node in the tree if we want to make it available app wide. In our case, the index.js where app is rendered.
- *
+ *@export - we export the store to the index.js file
  * @action type - 'increase'
  * lot of time our value may come from a dynamic medium such as user input, where we do not wanna hard code our value. That is when the action is used.
  * link goes to the 'Counter' file from here.
@@ -138,7 +138,7 @@
 
 //--------------------------------------------------------------------------------------------------------------stage4 (with REDUX toolkit)
 
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+// import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 // const initialState = { counter: 0, showCounter: true };
 
@@ -204,14 +204,14 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 //we just keep the store created here
 
-import counterReducer from './counter';
-import authReducer from './auth';
-const store = configureStore({
-	reducer: {
-		// counter: counterSlice.reducer,
-		counter: counterReducer,
-		auth: authReducer,
-	},
-});
+// import counterReducer from './counter';
+// import authReducer from './auth';
+// const store = configureStore({
+// 	reducer: {
+// 		// counter: counterSlice.reducer,
+// 		counter: counterReducer,
+// 		auth: authReducer,
+// 	},
+// });
 
-export default store;
+// export default store;
