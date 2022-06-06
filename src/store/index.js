@@ -4,21 +4,76 @@ import { createStore } from 'redux';
 
 //only store and reducer here
 
-const counterReducer = (state = { counter: 0 }, action) => {
+// const counterReducer = (state = { counter: 0 }, action) => {
+// 	if (action.type === 'increment') {
+// 		return {
+// 			counter: state.counter + 1,
+// 		};
+// 	}
+// 	//2
+// 	if (action.type === 'increase') {
+// 		return {
+// 			counter: state.counter + action.amount,
+// 		};
+// 	}
+// 	if (action.type === 'decrement') {
+// 		return {
+// 			counter: state.counter - 1,
+// 		};
+// 	}
+
+// 	return state;
+// };
+
+// const store = createStore(counterReducer);
+
+// export default store;
+
+/**
+ *@export - we export the store to the index.js file
+ * @action type - 'increase'
+ * lot of time our value may come from a dynamic medium such as user input, where we do not wanna hard code our value. That is when the action is used.
+ * link goes to the 'Counter' file from here.
+ */
+
+//--------------------------------------------------------------------------------------------------------------stage2
+
+//we add a toggleHandler action type here.
+//Technically, we don't redux for the toggle counter, we could useState since that state is only used locally.
+//this is just for demo
+
+const initialState = { counter: 0, showCounter: true };
+
+const counterReducer = (state = initialState, action) => {
 	if (action.type === 'increment') {
+		// state.counter++
+		// 👆 NEVER DO THIS! This mutates the original state
+		//rather overwrrite the original state like this 👇
 		return {
 			counter: state.counter + 1,
+			showCounter: state.showCounter,
 		};
 	}
 	//2
 	if (action.type === 'increase') {
 		return {
 			counter: state.counter + action.amount,
+			showCounter: state.showCounter,
 		};
 	}
+	//3
 	if (action.type === 'decrement') {
 		return {
 			counter: state.counter - 1,
+			showCounter: state.showCounter,
+		};
+	}
+	//4
+	if (action.type === 'toggle') {
+		return {
+			counter: state.counter,
+			showCounter: !state.showCounter,
+			//invert the counter from whatever state it was in
 		};
 	}
 
@@ -30,63 +85,11 @@ const store = createStore(counterReducer);
 export default store;
 
 /**
- *@export - we export the store to the index.js file
- * @action type - 'increase'
- * lot of time our value may come from a dynamic medium such as user input, where we do not wanna hard code our value. That is when the action is used.
- * link goes to the 'Counter' file from here.
+ * @showCounter -
+ * we initiated our state with showCounter
+ * Must update the showCounter everywhere even if this was not changed.
+ * Failing to mention such updated object in the state management here will result in undefined or throw error!
  */
-
-//--------------------------------------------------------------------------------------------------------------stage2
-
-//We create another state for toggeleHandler here, but that is just for demonstrate purpose, we do not need a global state for the toggle since it is only used in one component, hence, we could use useState hook and manage local state.but that is just for demonstrate purpose here.
-
-// const initialState = { counter: 0, showCounter: true };
-
-// const counterReducer = (state = initialState, action) => {
-// 	if (action.type === 'increment') {
-// 		// state.counter++
-// 		// 👆 NEVER DO THIS! This mutates the original state
-// 		//rather overwrrite the original state like this 👇
-// 		return {
-// 			counter: state.counter + 1,
-// 			showCounter: state.showCounter,
-// 		};
-// 	}
-// 	//2
-// 	if (action.type === 'increase') {
-// 		return {
-// 			counter: state.counter + action.amount,
-// 			showCounter: state.showCounter,
-// 		};
-// 	}
-// 	//3
-// 	if (action.type === 'decrement') {
-// 		return {
-// 			counter: state.counter - 1,
-// 			showCounter: state.showCounter,
-// 		};
-// 	}
-// 	//4
-// 	if (action.type === 'toggle') {
-// 		return {
-// 			counter: state.counter,
-// 			showCounter: !state.showCounter,
-// 			//making the opposite of whatever the state was before this action is clicked on.
-// 		};
-// 	}
-
-// 	return state;
-// };
-
-// const store = createStore(counterReducer);
-
-// export default store;
-
-// /**
-//  * @showCounter -
-//  * we initiated our state with showCounter
-//  * we mentioned it anywhere the state property is changed.We must update the new snapshot of the all state object, even if one of them had not been changed by the new click. Failing to mention such updated object in the state management here will result in undefined and throw error!
-//  */
 
 //--------------------------------------------------------------------------------------------------------------stage3 (HANDLING POTENTIAL MESS)
 
